@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Salvadoran Records API - INICIO</title>
+    <link href="webpage/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="webpage/css/myCSS.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="webpage/js/bootstrap.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <div class="jumbotron text-center headCust">
+    <h1>Salvadoran Records API</h1>
+    <p>Lo mejor en musica</p>
+  </div>
+    <div class="container">
+        <div class="row">
+            <div class="container col-xs-12 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h1>Manual básico de la API</h1></div>
+                    <div class="table-responsive" id="table_container">
+                        <table class="table" id="tableBiblioteca">
+                            <thead>
+                                <tr>
+                                    <th>Metodo</th>
+                                    <th>Enlace</th>
+                                    <th>Requiere</th>
+                                    <th>Descripcion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                  <th><b>GET</b></th>
+                                  <td>http://174.138.64.78/CDAPI/</td>
+                                  <td>-</td>
+                                  <td>Pagina principal, incluye el manual basico de la API</td>
+                              </tr>
+                              <tr>
+                                  <th><b>Artistas</b></th>
+                                  <th> </th>
+                                  <th> </th>
+                                  <th> </th>
+                              </tr>
+                                <tr>
+                                    <th><b>GET</b></th>
+                                    <td>http://174.138.64.78/CDAPI/artists</td>
+                                    <td>-</td>
+                                    <td>Devuelve un JSON con todos los Artistas/Bandas ingresados en la API</td>
+                                </tr>
+                                <tr>
+                                    <th><b>GET</b></th>
+                                    <td>http://174.138.64.78/CDAPI/artist/[{id}]</td>
+                                    <td>[{id}] = Identificador de un Artista en especifico</td>
+                                    <td>Devuelve un JSON con la informacion sobre un artista/grupo en especifico por medio de su ID</td>
+                                </tr>
+                                <tr>
+                                    <th><b>GET</b></th>
+                                    <td>http://174.138.64.78/CDAPI/artist/search/[{query}]</td>
+                                    <td>[{query}] = Nombre de un artista</td>
+                                    <td>Devuelve un JSON con la informacion sobre un artista/grupo en especifico por medio de su nombre</td>
+                                </tr>
+                                <tr>
+                                    <th><b>POST</b></th>
+                                    <td>http://174.138.64.78/CDAPI/newartist</td>
+                                    <td><ul>
+                                      <li>nombre : string</li>
+                                      <li>miembros : integer</li>
+                                      <li>trayectoria : integer </li>
+                                      <li>genero : string</li>
+                                      <li>primersencillo : string </li>
+                                    </ul> </td>
+                                    <td>Ingresa un nuevo registro de artista, devuelve una confirmacion cuando el ingreso se realiza con exito Ejemplo cuerpo JSON:
+                                      <br>
+                                          {
+                                              	"nombre" : "The beatles",
+                                              	"miembros" : 4,
+                                              	"trayectoria": 10,
+                                              	"genero":"Rock",
+                                              	"primersencillo": "Love me do"
+                                              }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><b>DELETE</b></th>
+                                    <td>http://174.138.64.78/CDAPI/artist/[{id}]</td>
+                                    <td>[{id}] = Identificador de un Artista en especifico</td>
+                                    <td>Elimina un elemento de artista por medio de su ID</td>
+                                </tr>
+                                <tr>
+                                    <th><b>PUT</b></th>
+                                    <td>http://174.138.64.78/CDAPI/artist/[{id}]</td>
+                                    <td>
+                                      [{id}] = Identificador de un Artista en especifico
+                                      <ul><li>nombre : string</li>
+                                      <li>miembros : integer</li>
+                                      <li>trayectoria : integer </li>
+                                      <li>genero : string</li>
+                                      <li>primersencillo : string </li>
+                                    </ul> </td>
+                                    <td>Actualiza un registro existente de un artista, requiere que se ingrese en su url el identificador del artista a modificar.
+                                      Ejemplo del cuerpo JSON:
+                                      <br>
+                                      {
+                                            "nombre" : "Aerosmith",
+                                            "miembros" : 4,
+                                            "trayectoria": 30,
+                                            "genero":"Blues",
+                                            "primersencillo": "Dream on"
+                                            }
+                                    </td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <th><b>Proximos Conciertos</b></th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                </tr>
+                                  <tr>
+                                      <th><b>GET</b></th>
+                                      <td>http://174.138.64.78/CDAPI/concerts</td>
+                                      <td>-</td>
+                                      <td>Devuelve un JSON con todos los proximos conciertos ingresados en la API</td>
+                                  </tr>
+                                  <tr>
+                                      <th><b>GET</b></th>
+                                      <td>http://174.138.64.78/CDAPI/concert/[{id}]</td>
+                                      <td>[{id}] = Identificador de un Concierto en especifico</td>
+                                      <td>Devuelve un JSON con la informacion sobre un Concierto en especifico por medio de su ID</td>
+                                  </tr>
+                                  <tr>
+                                      <th><b>GET</b></th>
+                                      <td>http://174.138.64.78/CDAPI/concert/search/[{query}]</td>
+                                      <td>[{query}] = Nombre de un artista</td>
+                                      <td>Devuelve un JSON con la informacion sobre todos los conciertos asociados a un determinado artista/grupo por medio de su nombre</td>
+                                  </tr>
+                                  <tr>
+                                      <th><b>POST</b></th>
+                                      <td>http://174.138.64.78/CDAPI/newconcert</td>
+                                      <td><ul>
+                                        <li>id_artista: integer</li>
+                                        <li>lugar: string</li>
+                                        <li>asistencia: integer </li>
+                                        <li>entrada: double</li>
+                                        <li>ganancias: double</li>
+                                        <li>pago_artista: double</li>
+                                        <li>fecha: date</li>
+                                        <li>representante: string</li>
+                                      </ul> </td>
+                                      <td>Ingresa un nuevo registro de un concierto proximo, devuelve una confirmacion cuando el ingreso se realiza con exito,
+                                        Es importante que se ingrese el identificador de un artista para que el registro se haga correctamente. Ejemplo cuerpo JSON:
+                                        <br>
+                                        {
+                                              "id_artista": 5,
+                                              "lugar": "O2 Stadium",
+                                              "asistencia": 50000,
+                                              "entrada": 355.00,
+                                              "ganancias": 105000,
+                                              "pago_artista": 70000,
+                                              "fecha": "2017-06-18",
+                                              "representante": "Tyler Black"
+                                              }
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <th><b>DELETE</b></th>
+                                      <td>http://174.138.64.78/CDAPI/concert/[{id}]</td>
+                                      <td>[{id}] = Identificador de un Concierto en especifico</td>
+                                      <td>Elimina un elemento de proximo concierto por medio de su ID</td>
+                                  </tr>
+                                  <tr>
+                                      <th><b>PUT</b></th>
+                                      <td>http://174.138.64.78/CDAPI/concert/[{id}]</td>
+                                      <td>
+                                        [{id}] = Identificador de un Concierto en especifico
+                                        <ul>
+                                          <li>id_artista: integer</li>
+                                          <li>lugar: string</li>
+                                          <li>asistencia: integer </li>
+                                          <li>entrada: double</li>
+                                          <li>ganancias: double</li>
+                                          <li>pago_artista: double</li>
+                                          <li>fecha: date</li>
+                                          <li>representante: string</li>
+                                        </ul>  </td>
+                                      <td>Actualiza un registro existente de un concierto, requiere que se ingrese en su url el identificador del concierto a modificar.
+                                        Ejemplo del cuerpo JSON:
+                                        <br>
+                                          {
+                                              "id_artista": 5,
+                                              "lugar": "Wembley Stadium",
+                                              "asistencia": 100000,
+                                              "entrada": 555.00,
+                                              "ganancias": 1005000,
+                                              "pago_artista": 700000,
+                                              "fecha": "2017-06-18",
+                                              "representante": "Chad Black"
+                                              }
+                                      </td>
+                                  </tr>
+
+
+
+                                  <tr>
+                                      <th><b>Discografia</b></th>
+                                      <th> </th>
+                                      <th> </th>
+                                      <th> </th>
+                                  </tr>
+                                    <tr>
+                                        <th><b>GET</b></th>
+                                        <td>http://174.138.64.78/CDAPI/discography</td>
+                                        <td>-</td>
+                                        <td>Devuelve un JSON con todos los proximos discos registrados en la API</td>
+                                    </tr>
+                                    <tr>
+                                        <th><b>GET</b></th>
+                                        <td>http://174.138.64.78/CDAPI/disc/[{id}]</td>
+                                        <td>[{id}] = Identificador de un Disco en especifico</td>
+                                        <td>Devuelve un JSON con la informacion sobre un Disco en especifico por medio de su ID</td>
+                                    </tr>
+                                    <tr>
+                                        <th><b>GET</b></th>
+                                        <td>http://174.138.64.78/CDAPI/disc/search/[{query}]</td>
+                                        <td>[{query}] = Nombre de un artista</td>
+                                        <td>Devuelve un JSON con la informacion sobre todos los Discos asociados a un determinado artista/grupo por medio de su nombre</td>
+                                    </tr>
+                                    <tr>
+                                        <th><b>POST</b></th>
+                                        <td>http://174.138.64.78/CDAPI/newdisc</td>
+                                        <td><ul>
+                                          <li>id_artista: integer</li>
+                                          <li>nombre: string</li>
+                                          <li>anio: int</li>
+                                          <li>ventas_copias: int</li>
+                                          <li>pistas:  int</li>
+                                          <li>colaboracion: string</li>
+                                          <li>sencillo: string</li>
+                                        </ul> </td>
+                                        <td>Ingresa un nuevo registro de un Disco, devuelve una confirmacion cuando el ingreso se realiza con exito,
+                                          Es importante que se ingrese el identificador de un artista para que el registro se haga correctamente. Ejemplo cuerpo JSON:
+                                          <br>
+                                          {
+                                                "id_artista": 5,
+                                                "nombre": "Rubber Soul",
+                                                "anio": 1965,
+                                                "ventas_copias": 100000,
+                                                "pistas": 15,
+                                                "colaboracion": "",
+                                                "sencillo": "Drive my car"
+                                                }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><b>DELETE</b></th>
+                                        <td>http://174.138.64.78/CDAPI/disc/[{id}]</td>
+                                        <td>[{id}] = Identificador de un Disco en especifico</td>
+                                        <td>Elimina un Disco por medio de su ID</td>
+                                    </tr>
+                                    <tr>
+                                        <th><b>PUT</b></th>
+                                        <td>http://174.138.64.78/CDAPI/disc/[{id}]</td>
+                                        <td>
+                                          [{id}] = Identificador de un Disco en especifico
+                                          <ul>
+                                            <li>id_artista: integer</li>
+                                            <li>nombre: string</li>
+                                            <li>anio: int</li>
+                                            <li>ventas_copias: int</li>
+                                            <li>pistas:  int</li>
+                                            <li>colaboracion: string</li>
+                                            <li>sencillo: string</li>
+                                          </ul>  </td>
+                                        <td>Actualiza un registro existente de un Disco, requiere que se ingrese en su url el identificador del Disco a modificar.
+                                          Ejemplo del cuerpo JSON:
+                                          <br>
+                                          {
+                                                "id_artista": 5,
+                                                "nombre": "Abbey Road",
+                                                "anio": 1969,
+                                                "ventas_copias": 1000000,
+                                                "pistas": 14,
+                                                "colaboracion": "none",
+                                                "sencillo": "Come together"
+                                                }
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col-xs-12 col-md-12">
+          <div class="container">
+              <h4 class="text-center">Creado por: Luis Eduardo Chávez Barillas - CB160604</h4>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
